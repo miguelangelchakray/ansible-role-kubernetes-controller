@@ -4,7 +4,7 @@ Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
 ExecStart={{k8s_bin_dir}}/kube-controller-manager \
-  --address={{hostvars[inventory_hostname]['ansible_' + k8s_interface].ipv4.address}} \
+  --address={{k8s_controller_manager_address}} \
   --cluster-cidr={{k8s_controller_manager_cluster_cidr}} \
   --cluster-name={{k8s_controller_manager_cluser_name}} \
   --cluster-signing-cert-file={{k8s_controller_manager_conf_dir}}/ca-k8s-apiserver.pem \
