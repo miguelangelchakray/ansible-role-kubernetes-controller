@@ -70,10 +70,11 @@
   tags:
     - k8s-controller
 
-- name: Enable kube-apiserver
+- name: Enable and start kube-apiserver
   service:
     name: kube-apiserver
     enabled: yes
+    state: started
   tags:
     - k8s-controller
 
@@ -90,10 +91,11 @@
   tags:
     - k8s-controller
 
-- name: Enable kube-controller-manager
+- name: Enable and start kube-controller-manager
   service:
     name: kube-controller-manager
     enabled: yes
+    state: started
   tags:
     - k8s-controller
 
@@ -107,13 +109,15 @@
   notify:
     - reload systemd
     - restart kube-scheduler
+
   tags:
     - k8s-controller
 
-- name: Enable kube-scheduler
+- name: Enable and start kube-scheduler
   service:
     name: kube-scheduler
     enabled: yes
+    state: started
   tags:
     - k8s-controller
 
