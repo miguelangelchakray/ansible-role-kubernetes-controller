@@ -15,6 +15,9 @@ ExecStart={{k8s_bin_dir}}/kube-controller-manager \
   --cluster-signing-cert-file={{k8s_controller_manager_conf_dir}}/ca-k8s-apiserver.pem \
   --service-account-private-key-file={{k8s_controller_manager_conf_dir}}/cert-k8s-apiserver-key.pem \
   --service-cluster-ip-range={{k8s_controller_manager_service_cluster_ip_range}} \
+{% if k8s_cloud_provider is defined and k8s_cloud_provider != '' %}
+  --cloud-provider={{k8s_cloud_provider}} \
+{% endif %}
   --v=2
 Restart=on-failure
 RestartSec=5
