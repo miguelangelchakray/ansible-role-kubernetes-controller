@@ -66,6 +66,7 @@
     mode: 0644
   notify:
     - reload systemd
+    - restart kube-apiserver
   tags:
     - k8s-controller
 
@@ -86,6 +87,7 @@
     mode: 0644
   notify:
     - reload systemd
+    - restart kube-controller-manager
   tags:
     - k8s-controller
 
@@ -96,7 +98,7 @@
     state: started
   tags:
     - k8s-controller
- 
+
 - name: Create systemd unit file for kube-scheduler
   template:
     src: etc/systemd/system/kube-scheduler.service.j2
@@ -106,6 +108,8 @@
     mode: 0644
   notify:
     - reload systemd
+    - restart kube-scheduler
+
   tags:
     - k8s-controller
 

@@ -4,7 +4,7 @@ Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
 ExecStart={{k8s_bin_dir}}/kube-scheduler \
-  --address={{hostvars[inventory_hostname]['ansible_' + k8s_interface].ipv4.address}} \
+  --address={{k8s_scheduler_address}} \
   --leader-elect={{k8s_scheduler_leader_elect}} \
   --master=http://{{hostvars[inventory_hostname]['ansible_' + k8s_interface].ipv4.address}}:8080 \
   --v=2
