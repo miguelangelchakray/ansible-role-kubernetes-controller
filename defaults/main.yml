@@ -31,6 +31,7 @@ k8s_apiserver_audit_log_path: "/var/log/audit.log"
 k8s_apiserver_bind_address: "{{hostvars[inventory_hostname]['ansible_' + k8s_interface].ipv4.address}}"
 k8s_apiserver_enable_swagger_ui: "true"
 k8s_apiserver_event_ttl: "1h"
+k8s_apiserver_insecure_bind_address: "{{hostvars[inventory_hostname]['ansible_' + k8s_interface].ipv4.address}}"
 k8s_apiserver_kubelet_https: "true"
 # "--kubelet-preferred-address-types" defaults to:
 # "Hostname,InternalDNS,InternalIP,ExternalDNS,ExternalIP"
