@@ -152,7 +152,7 @@
   delegate_to: "{{groups.k8s_etcd|first}}"
 
 - name: Apply kube-apiserver-to-kubelet ClusterRole
-  shell: "kubectl --server={{hostvars[inventory_hostname]['ansible_' + k8s_interface].ipv4.address}}:8080 apply -f /tmp/kube-apiserver-to-kubelet_cluster_role.yaml"
+  shell: "kubectl --server={{k8s_apiserver_insecure_bind_address}}:8080 apply -f /tmp/kube-apiserver-to-kubelet_cluster_role.yaml"
   register: kube_apiserver_to_kubelet_cluster_role
   run_once: true
   delegate_to: "{{groups.k8s_etcd|first}}"
@@ -160,7 +160,7 @@
     - k8s-controller
 
 - name: Apply kube-apiserver-to-kubelet ClusterRoleBinding
-  shell: "kubectl --server={{hostvars[inventory_hostname]['ansible_' + k8s_interface].ipv4.address}}:8080 apply -f /tmp/kube-apiserver-to-kubelet_cluster_role_binding.yaml"
+  shell: "kubectl --server={{k8s_apiserver_insecure_bind_address}}:8080 apply -f /tmp/kube-apiserver-to-kubelet_cluster_role_binding.yaml"
   register: kube_apiserver_to_kubelet_cluster_role_binding
   run_once: true
   delegate_to: "{{groups.k8s_etcd|first}}"
